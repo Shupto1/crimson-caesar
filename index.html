@@ -1480,16 +1480,6 @@
         >
           <div class="card-specular-light"></div>
 
-          <!-- Drag and Drop Overlay -->
-          <div class="card-drop-overlay">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="17 8 12 3 7 8"/>
-              <line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
-          </div>
-
           <div class="card-content-top">
             <div class="card-meta-row">
               <div class="course-badges-group">
@@ -1658,15 +1648,6 @@
         >
           <div class="card-specular-light"></div>
 
-          <div class="card-drop-overlay">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="17 8 12 3 7 8"/>
-              <line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
-          </div>
-
           <div class="card-content-top">
             <div class="card-meta-row">
               <div class="course-badges-group">
@@ -1806,15 +1787,6 @@
         >
           <div class="card-specular-light"></div>
 
-          <div class="card-drop-overlay">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="17 8 12 3 7 8"/>
-              <line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
-          </div>
-
           <div class="card-content-top">
             <div class="card-meta-row">
               <div class="course-badges-group">
@@ -1930,15 +1902,6 @@
           "
         >
           <div class="card-specular-light"></div>
-
-          <div class="card-drop-overlay">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="17 8 12 3 7 8"/>
-              <line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
-          </div>
 
           <div class="card-content-top">
             <div class="card-meta-row">
@@ -2104,15 +2067,6 @@
         >
           <div class="card-specular-light"></div>
 
-          <div class="card-drop-overlay">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="17 8 12 3 7 8"/>
-              <line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
-          </div>
-
           <div class="card-content-top">
             <div class="card-meta-row">
               <div class="course-badges-group">
@@ -2248,15 +2202,6 @@
           "
         >
           <div class="card-specular-light"></div>
-
-          <div class="card-drop-overlay">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="17 8 12 3 7 8"/>
-              <line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
-          </div>
 
           <div class="card-content-top">
             <div class="card-meta-row">
@@ -3231,113 +3176,11 @@
     /* --------------------------------------------------------------------------
        6. DYNAMIC FILE DRAG & DROP & FILEREADER API REPLACEMENT
        -------------------------------------------------------------------------- */
-    function setupDragAndDrop() {
-      subjectCards.forEach((card) => {
-        const cardId = card.id;
-        const defaultFilename = card.getAttribute('data-filename');
-        let dragCounter = 0;
+    function setupDragAndDrop() { /* Uploads disabled: drag-and-drop removed */ }
 
-        card.addEventListener('dragenter', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          dragCounter++;
-          card.classList.add('drag-over');
-        });
+    function handleFileUpload() { return; }
 
-        card.addEventListener('dragover', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          card.classList.add('drag-over');
-        });
-
-        card.addEventListener('dragleave', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          dragCounter--;
-          if (dragCounter <= 0) {
-            dragCounter = 0;
-            card.classList.remove('drag-over');
-          }
-        });
-
-        card.addEventListener('drop', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          dragCounter = 0;
-          card.classList.remove('drag-over');
-
-          const files = e.dataTransfer.files;
-          if (files && files.length > 0) {
-            processUploadedFile(files[0], cardId, defaultFilename);
-          }
-        });
-      });
-    }
-
-    function handleFileUpload(event, cardId, defaultFilename) {
-      const files = event.target.files;
-      if (files && files.length > 0) {
-        processUploadedFile(files[0], cardId, defaultFilename);
-      }
-      event.target.value = ''; // Reset input to permit re-selection of the same file
-    }
-
-    function processUploadedFile(file, cardId, defaultFilename) {
-      if (!file.name.endsWith('.html') && !file.name.endsWith('.htm')) {
-        showToast('Please upload an HTML note file (.html or .htm)');
-        return;
-      }
-
-      // Read file content using the FileReader API
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const fileContent = e.target.result;
-        const blob = new Blob([fileContent], { type: 'text/html' });
-        const objectUrl = URL.createObjectURL(blob);
-        const decoded = decodeURIComponent(defaultFilename);
-        const encoded = encodeURI(decoded);
-
-        customFileUrls[defaultFilename] = objectUrl;
-        customFileUrls[decoded] = objectUrl;
-        customFileUrls[encoded] = objectUrl;
-
-        playUploadSuccessSound();
-
-        // Update Card Visual Badges
-        const card = document.getElementById(cardId);
-        const subjectKey = card.getAttribute('data-subject');
-        const badge = document.getElementById(`status-badge-${subjectKey}`);
-        const sizeElem = document.getElementById(`size-${subjectKey}`);
-        const newTabBtn = card.querySelector('a.btn-card-action[target="_blank"]');
-
-        if (badge) {
-          badge.className = 'status-badge-custom';
-          badge.innerHTML = `<span class="status-dot-mini"></span><span>Custom Loaded</span> <button onclick="resetCustomFile(event, '${cardId}', '${defaultFilename}')" style="background:none; border:none; color:#f472b6; cursor:pointer; font-size:0.75rem; text-decoration:underline; margin-left:4px;" title="Revert to Default">Reset</button>`;
-        }
-
-        if (newTabBtn) {
-          newTabBtn.href = objectUrl;
-        }
-
-        const formattedSize = (file.size / 1024).toFixed(1) + ' KB (Custom)';
-        if (sizeElem) {
-          sizeElem.textContent = formattedSize;
-        }
-
-        showToast(`Loaded "${file.name}" via FileReader into ${card.getAttribute('data-title')}`);
-
-        // Automatically offer to view the newly loaded file
-        setTimeout(() => {
-          openNoteModal(defaultFilename, card.getAttribute('data-title'), card.getAttribute('data-code'));
-        }, 400);
-      };
-
-      reader.onerror = function() {
-        showToast('Error reading uploaded HTML file.');
-      };
-
-      reader.readAsText(file);
-    }
+    function processUploadedFile() { return; }
 
     function resetCustomFile(event, cardId, defaultFilename) {
       if (event) {
@@ -3414,7 +3257,7 @@
     // Info shortcut button
     document.getElementById('info-btn').addEventListener('click', () => {
       playClickSound();
-      showToast('Tip: Press "/" to search anytime • Press "Esc" to close the reader • Drag & drop .html files to preview');
+      showToast('Tip: Press "/" to search anytime • Press "Esc" to close the reader');
     });
   </script>
 
@@ -3430,6 +3273,8 @@ document.addEventListener('contextmenu',function(e){if(!isEditable(e.target)) e.
 document.addEventListener('copy',function(e){if(!isEditable(e.target)) e.preventDefault();},true);
 document.addEventListener('cut',function(e){if(!isEditable(e.target)) e.preventDefault();},true);
 document.addEventListener('dragstart',function(e){if(!isEditable(e.target)) e.preventDefault();},true);
+document.addEventListener('dragover',function(e){e.preventDefault();},true);
+document.addEventListener('drop',function(e){e.preventDefault();},true);
 document.addEventListener('keydown',function(e){
   var editable=isEditable(e.target);
   if(e.key==='F12'){e.preventDefault();return;}
