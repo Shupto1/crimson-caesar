@@ -1,0 +1,3500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRIMSON CAESAR | EEE Complete Study Notes Portal</title>
+  
+  <!-- Modern Geometric & Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CSS RESET & DESIGN SYSTEM VARIABLES (CRIMSON CAESAR THEME)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Backgrounds & Base: Deep Crimson Obsidian Void */
+      --bg-space: #070103;
+      --bg-midnight: #100206;
+      --bg-obsidian: #030001;
+      --bg-card: rgba(18, 4, 8, 0.72);
+      --bg-card-hover: rgba(30, 6, 13, 0.9);
+
+      /* Crimson Caesar Primary Accents */
+      --crimson-primary: #ef4444;
+      --crimson-dark: #b91c1c;
+      --crimson-flame: #f97316;
+      --crimson-amber: #fb923c;
+      --crimson-glow: rgba(239, 68, 68, 0.45);
+      --flame-glow: rgba(249, 115, 22, 0.45);
+
+      /* Liquid Fiery Chrome & Neomorphic Borders */
+      --chrome-border: linear-gradient(135deg, rgba(255,180,180,0.85) 0%, rgba(185,28,28,0.3) 25%, rgba(255,230,210,0.95) 48%, rgba(249,115,22,0.6) 52%, rgba(50,10,15,0.4) 75%, rgba(255,140,140,0.85) 100%);
+      --glass-border: rgba(239, 68, 68, 0.16);
+      --glass-highlight: rgba(255, 180, 180, 0.22);
+      --glass-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.85);
+
+      /* Typography Colors */
+      --text-main: #fff5f5;
+      --text-muted: #cbd5e1;
+      --text-dim: #94a3b8;
+
+      /* Subject Neon Palettes - Infused with Crimson Fire Energy */
+      --neon-amber: #f59e0b;
+      --neon-amber-glow: rgba(245, 158, 11, 0.4);
+      
+      --neon-cyan: #06b6d4;
+      --neon-orange: #f97316;
+      --neon-cyan-glow: rgba(6, 182, 212, 0.35);
+
+      --neon-purple: #c026d3;
+      --neon-pink: #f43f5e;
+      --neon-purple-glow: rgba(244, 63, 94, 0.4);
+
+      --neon-blue: #3b82f6;
+      --neon-electric: #00f0ff;
+      --neon-blue-glow: rgba(59, 130, 246, 0.35);
+
+      --neon-teal: #14b8a6;
+      --neon-violet: #ef4444;
+      --neon-teal-glow: rgba(239, 68, 68, 0.4);
+
+      --neon-emerald: #10b981;
+      --neon-emerald-glow: rgba(16, 185, 129, 0.35);
+
+      /* Typography */
+      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', var(--font-body);
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Transitions */
+      --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    body {
+      background-color: var(--bg-space);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ==========================================================================
+       CANVAS BACKGROUND: 3D TUBULAR CIRCUITS, CYBER GRID & LOGIC GATES
+       ========================================================================== */
+    #circuit-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Ambient radial glow layers (Crimson Caesar Fire & Ember Void) */
+    .ambient-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      background: 
+        radial-gradient(circle at 18% 18%, rgba(225, 29, 72, 0.22) 0%, transparent 48%),
+        radial-gradient(circle at 82% 25%, rgba(249, 115, 22, 0.18) 0%, transparent 48%),
+        radial-gradient(circle at 50% 85%, rgba(185, 28, 28, 0.2) 0%, transparent 55%),
+        radial-gradient(circle at 50% 0%, rgba(239, 68, 68, 0.28) 0%, transparent 60%);
+    }
+
+    /* Vignette and scanline overlay */
+    .vignette-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+      background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(5, 1, 2, 0.88) 100%);
+    }
+
+    /* ==========================================================================
+       PAGE CONTAINER & HEADER
+       ========================================================================== */
+    .app-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 28px 28px 70px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    /* Navigation Bar */
+    .top-navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 24px;
+      margin-bottom: 28px;
+      background: rgba(18, 4, 8, 0.65);
+      border: 1px solid rgba(239, 68, 68, 0.22);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 9999px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(239, 68, 68, 0.15), inset 0 1px 1px rgba(255, 180, 180, 0.2);
+    }
+
+    .brand-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1.5px solid rgba(239, 68, 68, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(239, 68, 68, 0.55);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 18% center;
+      transform: scale(1.6);
+      mix-blend-mode: screen;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.12rem;
+      letter-spacing: 0.06em;
+      background: linear-gradient(90deg, #ff7b7b, #ef4444 50%, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.5));
+    }
+
+    .brand-subtitle {
+      font-size: 0.7rem;
+      color: #fca5a5;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      font-size: 0.76rem;
+      font-family: var(--font-mono);
+      color: #fca5a5;
+    }
+
+    .status-dot-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 12px #ef4444;
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 8px #ef4444; }
+      50% { transform: scale(1.3); opacity: 0.7; box-shadow: 0 0 18px #f97316; }
+    }
+
+    .btn-icon-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-icon-nav:hover {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.45);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    }
+
+    /* ==========================================================================
+       HERO SECTION: CRIMSON CAESAR 3D LIQUID-CHROME TITLE & EMBLEM
+       ========================================================================== */
+    .hero-section {
+      text-align: center;
+      padding: 10px 0 32px 0;
+      position: relative;
+    }
+
+    /* Crimson Caesar Center Emblem Banner */
+    .hero-emblem-wrap {
+      max-width: 520px;
+      margin: 0 auto 12px auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-emblem-img {
+      width: 90%;
+      max-height: 180px;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 30px rgba(239, 68, 68, 0.75)) drop-shadow(0 0 65px rgba(249, 115, 22, 0.4));
+      animation: emblem-breathe 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes emblem-breathe {
+      0% {
+        transform: scale(0.98);
+        filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.65)) drop-shadow(0 0 50px rgba(249, 115, 22, 0.35));
+      }
+      100% {
+        transform: scale(1.02);
+        filter: drop-shadow(0 0 40px rgba(239, 68, 68, 0.95)) drop-shadow(0 0 80px rgba(249, 115, 22, 0.6));
+      }
+    }
+
+    .hero-dept-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3.2vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 8px auto 26px auto;
+      text-align: center;
+      max-width: 920px;
+      line-height: 1.3;
+    }
+
+    .hero-dept-title span.dept-text-chrome {
+      background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #fee2e2 22%,
+        #f87171 45%,
+        #ffffff 70%,
+        #f97316 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 22px rgba(239, 68, 68, 0.45));
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, rgba(239, 68, 68, 0.22), rgba(249, 115, 22, 0.22));
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: #fca5a5;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      box-shadow: 0 0 22px rgba(239, 68, 68, 0.25);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Crimson Caesar Flame & Chrome Gradient Effect */
+    .hero-title span.chrome-text {
+      background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #fee2e2 20%,
+        #f87171 42%,
+        #ffffff 55%,
+        #ef4444 75%,
+        #f97316 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 35px rgba(239, 68, 68, 0.55));
+    }
+
+    .hero-title span.neon-accent {
+      background: linear-gradient(135deg, #fca5a5 0%, #ef4444 40%, #f97316 75%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 26px rgba(239, 68, 68, 0.65));
+    }
+
+    .hero-description {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 28px auto;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Stats Quick Bar */
+    .stats-bar {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 16px 28px;
+      padding: 10px 24px;
+      background: rgba(22, 5, 10, 0.55);
+      border: 1px solid rgba(239, 68, 68, 0.18);
+      border-radius: 9999px;
+      backdrop-filter: blur(14px);
+      margin-bottom: 32px;
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.12);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      font-family: var(--font-mono);
+    }
+
+    .stat-item strong {
+      color: #f97316;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
+    }
+
+    /* 3D Liquid-Metal Chrome Search Bar */
+    .search-container {
+      max-width: 680px;
+      margin: 0 auto 16px auto;
+      position: relative;
+    }
+
+    .chrome-search-wrapper {
+      position: relative;
+      border-radius: 9999px;
+      padding: 2.5px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 180, 180, 0.9) 0%,
+        rgba(150, 30, 45, 0.35) 25%,
+        rgba(255, 225, 210, 0.95) 48%,
+        rgba(239, 68, 68, 0.65) 52%,
+        rgba(40, 8, 12, 0.5) 75%,
+        rgba(255, 140, 140, 0.9) 100%
+      );
+      box-shadow: 
+        0 12px 35px -6px rgba(0, 0, 0, 0.85),
+        0 0 30px rgba(239, 68, 68, 0.35),
+        inset 0 1px 2px rgba(255, 200, 200, 0.7);
+      transition: var(--transition-smooth);
+    }
+
+    .chrome-search-wrapper:focus-within {
+      box-shadow: 
+        0 16px 45px -6px rgba(0, 0, 0, 0.9),
+        0 0 45px rgba(239, 68, 68, 0.6),
+        inset 0 1px 2px rgba(255, 220, 220, 0.9);
+      transform: translateY(-2px);
+    }
+
+    .search-inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(14, 3, 6, 0.94);
+      border-radius: 9999px;
+      padding: 10px 20px;
+      backdrop-filter: blur(20px);
+    }
+
+    .search-icon {
+      color: #ef4444;
+      flex-shrink: 0;
+      display: flex;
+    }
+
+    .search-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .search-shortcut-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #fca5a5;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      padding: 3px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+
+    .search-clear-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 50%;
+      transition: var(--transition-smooth);
+    }
+
+    .search-clear-btn:hover {
+      color: #f43f5e;
+      background: rgba(244, 63, 94, 0.15);
+    }
+
+    /* Category Filter Chips */
+    .filter-chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto 0 auto;
+      max-width: 900px;
+    }
+
+    .filter-chip {
+      background: rgba(24, 5, 10, 0.65);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      color: var(--text-muted);
+      padding: 7px 16px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(10px);
+    }
+
+    .filter-chip:hover {
+      color: #ffffff;
+      border-color: rgba(239, 68, 68, 0.45);
+      background: rgba(40, 8, 16, 0.75);
+      transform: translateY(-1px);
+    }
+
+    .filter-chip.active {
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.6), rgba(249, 115, 22, 0.6));
+      border-color: #ef4444;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.45);
+    }
+
+    .filter-chip-count {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      opacity: 0.7;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 1px 6px;
+      border-radius: 9999px;
+    }
+
+    /* ==========================================================================
+       SUBJECT BENTO GRID (DESKTOP: 3x2, TABLET: 2x3, MOBILE: 1-COLUMN)
+       ========================================================================== */
+    .grid-section {
+      margin-top: 18px;
+      position: relative;
+    }
+
+    .grid-info-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      padding: 0 6px;
+    }
+
+    .grid-count-text {
+      font-size: 0.88rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .grid-count-text strong {
+      color: var(--text-main);
+    }
+
+    .grid-bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      perspective: 1200px;
+    }
+
+    /* Responsive Grid Breakpoints */
+    @media (max-width: 1160px) {
+      .grid-bento {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .grid-bento {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+      .app-wrapper {
+        padding: 20px 16px 50px 16px;
+      }
+      .top-navbar {
+        padding: 10px 16px;
+      }
+      .status-badge-live {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       NEOMORPHIC & GLASSMORRHIC SUBJECT CARD
+       ========================================================================== */
+    .subject-card {
+      position: relative;
+      border-radius: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--theme-border, rgba(255, 255, 255, 0.12));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+      box-shadow: 
+        0 16px 36px -10px rgba(0, 0, 0, 0.7),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.12),
+        inset -1px -1px 3px rgba(0, 0, 0, 0.6);
+      transform-style: preserve-3d;
+      will-change: transform;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    /* Ambient Glow Behind Card */
+    .subject-card::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle at 50% 20%, var(--theme-glow, rgba(56, 189, 248, 0.15)), transparent 70%);
+      opacity: 0.35;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    /* Specular Light Sheen Overlay */
+    .card-specular-light {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(
+        circle 280px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.14),
+        transparent 80%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .subject-card:hover .card-specular-light {
+      opacity: 1;
+    }
+
+    .subject-card:hover {
+      border-color: var(--theme-accent, #38bdf8);
+      box-shadow: 
+        0 24px 50px -10px rgba(0, 0, 0, 0.8),
+        0 0 35px -5px var(--theme-glow, rgba(56, 189, 248, 0.4)),
+        inset 1px 1px 2px rgba(255, 255, 255, 0.25);
+    }
+
+    .subject-card:hover::before {
+      opacity: 0.7;
+    }
+
+    @media (hover: none) {
+      .subject-card {
+        transform: none !important;
+      }
+      .card-specular-light {
+        display: none !important;
+      }
+    }
+
+    /* Drag & Drop Visual State */
+    .subject-card.drag-over {
+      border-color: #38bdf8 !important;
+      background: rgba(20, 35, 75, 0.9) !important;
+      transform: scale(1.03) !important;
+      box-shadow: 0 0 40px rgba(56, 189, 248, 0.6) !important;
+    }
+
+    .card-drop-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 14, 38, 0.95);
+      border: 2px dashed #38bdf8;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .card-drop-overlay * {
+      pointer-events: none;
+    }
+
+    .subject-card.drag-over .card-drop-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drop-overlay-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Inside Card Elements */
+    .card-content-top {
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Top Badges Row */
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .course-badges-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-eee {
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #e2e8f0;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-code {
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: var(--theme-glow, rgba(56, 189, 248, 0.15));
+      border: 1px solid var(--theme-border, rgba(56, 189, 248, 0.3));
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--theme-accent, #38bdf8);
+      letter-spacing: 0.05em;
+    }
+
+    .status-badge-ready {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.28);
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: #34d399;
+      font-weight: 500;
+    }
+
+    .status-badge-custom {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: rgba(236, 72, 153, 0.15);
+      border: 1px solid rgba(236, 72, 153, 0.35);
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      color: #f472b6;
+      font-weight: 500;
+    }
+
+    .status-dot-mini {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 6px currentColor;
+    }
+
+    /* 3D Holographic Graphic Visual Box */
+    .card-graphic-chamber {
+      width: 100%;
+      height: 175px;
+      border-radius: 16px;
+      background: rgba(5, 7, 20, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .graphic-svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Subject Title & Details */
+    .card-title-group {
+      margin-bottom: 14px;
+    }
+
+    .card-subject-title {
+      font-family: var(--font-display);
+      font-size: 1.32rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+      transition: color 0.3s ease;
+    }
+
+    .subject-card:hover .card-subject-title {
+      color: #ffffff;
+    }
+
+    .card-subject-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    /* Syllabus / Topic Tags */
+    .card-tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .topic-tag {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+    }
+
+    .subject-card:hover .topic-tag {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    /* Card Footer & Actions */
+    .card-footer {
+      position: relative;
+      z-index: 5;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .file-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.73rem;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+    }
+
+    .file-name-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 170px;
+    }
+
+    .card-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Primary "View Notes" Button (Crimson Caesar Flame) */
+    .btn-view-notes {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ef4444 0%, #b91c1c 55%, #7f1d1d 100%);
+      border: 1px solid rgba(255, 120, 120, 0.35);
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      box-shadow: 0 4px 18px -2px rgba(239, 68, 68, 0.55);
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .btn-view-notes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 26px 0 rgba(239, 68, 68, 0.8);
+      filter: brightness(1.18);
+    }
+
+    .btn-view-notes:active {
+      transform: translateY(0);
+    }
+
+    /* Secondary Action Buttons */
+    .btn-card-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .btn-card-action:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--text-main);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .hidden-file-input {
+      display: none;
+    }
+
+    /* ==========================================================================
+       FULL-SCREEN GLASSMORRHIC MODAL NOTE VIEWER
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 5, 16, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      width: 95vw;
+      height: 94vh;
+      max-width: 1700px;
+      background: #080204;
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 45px rgba(239, 68, 68, 0.3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.96) translateY(10px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (max-width: 680px) {
+      .modal-window {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+      }
+      .modal-header-bar {
+        flex-wrap: wrap;
+        padding: 10px 14px;
+        gap: 10px;
+      }
+      .modal-subject-select {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+      }
+      .modal-title-left {
+        flex: 1;
+      }
+    }
+
+    .modal-overlay.active .modal-window {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Modal Top Glass Toolbar */
+    .modal-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 20px;
+      background: rgba(18, 4, 8, 0.96);
+      border-bottom: 1px solid rgba(239, 68, 68, 0.25);
+      backdrop-filter: blur(14px);
+    }
+
+    .modal-title-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .modal-subject-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ef4444, #f97316);
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
+    }
+
+    .modal-title-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .modal-title-sub {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+    }
+
+    /* Middle Switcher */
+    .modal-subject-select {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+      max-width: 260px;
+    }
+
+    .modal-subject-select option {
+      background: #090c1f;
+      color: #ffffff;
+    }
+
+    /* Right Controls */
+    .modal-controls-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-tool-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .modal-tool-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+    }
+
+    .modal-tool-btn.btn-close {
+      background: rgba(244, 63, 94, 0.15);
+      border-color: rgba(244, 63, 94, 0.3);
+      color: #f43f5e;
+    }
+
+    .modal-tool-btn.btn-close:hover {
+      background: #f43f5e;
+      color: #ffffff;
+    }
+
+    /* Modal Frame Body */
+    .modal-frame-container {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #080a18;
+    }
+
+    .modal-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .iframe-loader {
+      position: absolute;
+      inset: 0;
+      background: #080a18;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+
+    .spinner-ring {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(239, 68, 68, 0.2);
+      border-top-color: #ef4444;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ==========================================================================
+       TOAST NOTIFICATION COMPONENT
+       ========================================================================== */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.2);
+      backdrop-filter: blur(16px);
+      color: #f8fafc;
+      font-size: 0.88rem;
+      pointer-events: auto;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: var(--transition-bounce);
+    }
+
+    .toast-pill.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Empty Search State */
+    .empty-search-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: rgba(14, 18, 44, 0.4);
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      display: none;
+    }
+
+    .empty-search-state.show {
+      display: block;
+    }
+
+    .empty-search-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .empty-search-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    .hub-footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated 3D Tubular Circuit, Perspective Cyber Grid & Floating Logic Gates Canvas -->
+  <canvas id="circuit-canvas"></canvas>
+  <div class="ambient-glow"></div>
+  <div class="vignette-overlay"></div>
+
+  <!-- Main App Wrapper -->
+  <div class="app-wrapper">
+
+    <!-- Top Navigation Bar (Crimson Caesar) -->
+    <header class="top-navbar">
+      <a href="#" class="brand-pill">
+        <div class="brand-logo-icon">
+          <img src="crimson_caesar_logo.png" alt="Crimson Caesar" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">CRIMSON CAESAR</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <div class="status-badge-live">
+          <span class="status-dot-pulse"></span>
+          <span>6/6 LOCAL CORES ACTIVE</span>
+        </div>
+
+        <!-- Audio Synthesizer Toggle -->
+        <button id="sound-toggle-btn" class="btn-icon-nav" title="Toggle Cyber Audio Feedback" aria-label="Toggle Sound">
+          <svg id="sound-icon-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+          <svg id="sound-icon-off" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+        </button>
+
+        <!-- Quick Info / Help Button -->
+        <button id="info-btn" class="btn-icon-nav" title="System Shortcuts & Info" aria-label="Help">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section with Crimson Caesar Dragon Emblem & Centered Department Title -->
+    <section class="hero-section">
+      <!-- Crimson Caesar Centerpiece Dragon Emblem -->
+      <div class="hero-emblem-wrap">
+        <img src="crimson_caesar_logo.png" alt="Crimson Caesar Dragon" class="hero-emblem-img">
+      </div>
+
+      <!-- Centered Department Title in the Middle -->
+      <h1 class="hero-dept-title">
+        <span class="dept-text-chrome">Department of Electrical and Electronic Engineering</span>
+      </h1>
+
+      <!-- 3D Liquid-Chrome Search Bar -->
+      <div class="search-container">
+        <div class="chrome-search-wrapper">
+          <div class="search-inner">
+            <div class="search-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </div>
+            <input 
+              type="text" 
+              id="subject-search-input" 
+              class="search-input" 
+              placeholder="Search by subject, course code (e.g. 4101, 3201), topic or formula..." 
+              autocomplete="off" 
+              spellcheck="false"
+            >
+            <button id="search-clear-btn" class="search-clear-btn" title="Clear Search">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+            <span class="search-shortcut-badge">/</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Category Filter Chips -->
+      <div class="filter-chips-container">
+        <button class="filter-chip active" data-filter="all">
+          <span>All Modules</span>
+          <span class="filter-chip-count">6</span>
+        </button>
+        <button class="filter-chip" data-filter="year3">
+          <span>Year 3</span>
+          <span class="filter-chip-count">3</span>
+        </button>
+        <button class="filter-chip" data-filter="year4">
+          <span>Year 4</span>
+          <span class="filter-chip-count">3</span>
+        </button>
+        <button class="filter-chip" data-filter="signal">
+          <span>Signals & DSP</span>
+          <span class="filter-chip-count">2</span>
+        </button>
+        <button class="filter-chip" data-filter="hardware">
+          <span>Hardware & Silicon</span>
+          <span class="filter-chip-count">2</span>
+        </button>
+        <button class="filter-chip" data-filter="systems">
+          <span>Systems & Math</span>
+          <span class="filter-chip-count">2</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Bento Grid Section: 6 Neomorphic Glass Cards -->
+    <main class="grid-section">
+      <div class="grid-info-bar">
+        <div class="grid-count-text">
+          Showing <strong id="visible-card-count">6</strong> of 6 Core EEE Modules
+        </div>
+      </div>
+
+      <div class="grid-bento" id="cards-container">
+
+        <!-- ===================================================================
+             CARD 1: MICROPROCESSOR & MICROCONTROLLER (AMBER / GOLD NEON)
+             =================================================================== -->
+        <article 
+          class="subject-card" 
+          id="card-microprocessor" 
+          data-subject="microprocessor"
+          data-categories="year3 hardware"
+          data-keywords="microprocessor microcontroller cse 3201 8085 8086 intel assembly registers stack 8259 pic interrupts memory bus"
+          data-filename="Microprocessor.html"
+          data-title="Microprocessor & Microcontroller"
+          data-code="CSE 3201"
+          style="
+            --theme-accent: var(--neon-amber); 
+            --theme-glow: var(--neon-amber-glow); 
+            --theme-border: rgba(245, 158, 11, 0.3);
+          "
+        >
+          <div class="card-specular-light"></div>
+
+          <!-- Drag and Drop Overlay -->
+          <div class="card-drop-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
+          </div>
+
+          <div class="card-content-top">
+            <div class="card-meta-row">
+              <div class="course-badges-group">
+                <span class="badge-eee">EEE / CSE</span>
+                <span class="badge-code">CSE 3201</span>
+              </div>
+              <div class="status-badge-ready" id="status-badge-microprocessor">
+                <span class="status-dot-mini"></span>
+                <span class="status-text">HTML File Ready</span>
+              </div>
+            </div>
+
+            <!-- Custom Animated 3D Microprocessor SVG Graphic -->
+            <div class="card-graphic-chamber">
+              <svg class="graphic-svg" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fbbf24"/>
+                    <stop offset="50%" stop-color="#d97706"/>
+                    <stop offset="100%" stop-color="#78350f"/>
+                  </linearGradient>
+                  <linearGradient id="core-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef3c7"/>
+                    <stop offset="50%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#92400e"/>
+                  </linearGradient>
+                  <filter id="neon-glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Circuit Board Traces -->
+                <g stroke="#f59e0b" stroke-width="1.2" opacity="0.3" fill="none">
+                  <path d="M 20 20 L 70 20 L 90 40 L 90 70"/>
+                  <path d="M 300 20 L 250 20 L 230 40 L 230 70"/>
+                  <path d="M 20 160 L 70 160 L 90 140 L 90 110"/>
+                  <path d="M 300 160 L 250 160 L 230 140 L 230 110"/>
+                  <!-- Solder Pads -->
+                  <circle cx="20" cy="20" r="3" fill="#f59e0b"/>
+                  <circle cx="300" cy="20" r="3" fill="#f59e0b"/>
+                  <circle cx="20" cy="160" r="3" fill="#f59e0b"/>
+                  <circle cx="300" cy="160" r="3" fill="#f59e0b"/>
+                </g>
+
+                <!-- IC Radiating Pins (Top & Bottom) -->
+                <g stroke="#d97706" stroke-width="2.5" stroke-linecap="round">
+                  <!-- Top Pins -->
+                  <line x1="115" y1="46" x2="115" y2="34"/>
+                  <line x1="130" y1="46" x2="130" y2="34"/>
+                  <line x1="145" y1="46" x2="145" y2="34"/>
+                  <line x1="160" y1="46" x2="160" y2="34"/>
+                  <line x1="175" y1="46" x2="175" y2="34"/>
+                  <line x1="190" y1="46" x2="190" y2="34"/>
+                  <line x1="205" y1="46" x2="205" y2="34"/>
+
+                  <!-- Bottom Pins -->
+                  <line x1="115" y1="134" x2="115" y2="146"/>
+                  <line x1="130" y1="134" x2="130" y2="146"/>
+                  <line x1="145" y1="134" x2="145" y2="146"/>
+                  <line x1="160" y1="134" x2="160" y2="146"/>
+                  <line x1="175" y1="134" x2="175" y2="146"/>
+                  <line x1="190" y1="134" x2="190" y2="146"/>
+                  <line x1="205" y1="134" x2="205" y2="146"/>
+
+                  <!-- Left Pins -->
+                  <line x1="94" y1="65" x2="82" y2="65"/>
+                  <line x1="94" y1="80" x2="82" y2="80"/>
+                  <line x1="94" y1="95" x2="82" y2="95"/>
+                  <line x1="94" y1="110" x2="82" y2="110"/>
+
+                  <!-- Right Pins -->
+                  <line x1="226" y1="65" x2="238" y2="65"/>
+                  <line x1="226" y1="80" x2="238" y2="80"/>
+                  <line x1="226" y1="95" x2="238" y2="95"/>
+                  <line x1="226" y1="110" x2="238" y2="110"/>
+                </g>
+
+                <!-- Ceramic CPU Package -->
+                <rect x="95" y="45" width="130" height="90" rx="10" fill="#18151f" stroke="#fbbf24" stroke-width="2" filter="url(#neon-glow-amber)"/>
+                
+                <!-- Corner Pin 1 Indicator -->
+                <circle cx="107" cy="57" r="3.5" fill="#f59e0b"/>
+
+                <!-- Silicon Core Die -->
+                <rect x="120" y="62" width="80" height="56" rx="6" fill="#0d0c13" stroke="url(#gold-grad)" stroke-width="1.5"/>
+
+                <!-- Core Die Typography & Tracks -->
+                <text x="160" y="85" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="13" fill="#fef3c7" letter-spacing="1">8086 μP</text>
+                <text x="160" y="103" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#f59e0b" letter-spacing="0.5">16-BIT ARCH</text>
+
+                <!-- Dynamic Data Flow Spark Pulses -->
+                <circle cx="160" cy="40" r="2.5" fill="#fef3c7">
+                  <animate attributeName="opacity" values="0.2;1;0.2" dur="1.2s" repeatCount="indefinite" />
+                  <animate attributeName="cy" values="46;34;46" dur="1.2s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="160" cy="140" r="2.5" fill="#fef3c7">
+                  <animate attributeName="opacity" values="0.2;1;0.2" dur="1.2s" begin="0.6s" repeatCount="indefinite" />
+                  <animate attributeName="cy" values="134;146;134" dur="1.2s" begin="0.6s" repeatCount="indefinite" />
+                </circle>
+              </svg>
+            </div>
+
+            <!-- Subject Information -->
+            <div class="card-title-group">
+              <h2 class="card-subject-title">Microprocessor & Microcontroller</h2>
+              <p class="card-subject-subtitle">Intel 8085/8086 internal architectures, register sets, stack frames, 8259 PIC interrupts, and assembly programming.</p>
+            </div>
+
+            <!-- Syllabus Topics -->
+            <div class="card-tags-list">
+              <span class="topic-tag">8086 EU & BIU</span>
+              <span class="topic-tag">8259 PIC</span>
+              <span class="topic-tag">Addressing Modes</span>
+              <span class="topic-tag">Memory Bank Interfacing</span>
+            </div>
+          </div>
+
+          <!-- Card Action Buttons & File Meta -->
+          <div class="card-footer">
+            <div class="file-meta-row">
+              <span class="file-name-text" title="Microprocessor.html">Microprocessor.html</span>
+              <span class="file-size-text" id="size-microprocessor">~971 KB • HTML5</span>
+            </div>
+
+            <div class="card-btn-group">
+              <button class="btn-view-notes" onclick="openNoteModal('Microprocessor.html', 'Microprocessor & Microcontroller', 'CSE 3201')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span>View Notes</span>
+              </button>
+
+              <a href="Microprocessor.html" target="_blank" class="btn-card-action" title="Open in New Tab" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+
+              <label class="btn-card-action" title="Quick Upload / Replace File" style="cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <input type="file" class="hidden-file-input" accept=".html,.htm" onchange="handleFileUpload(event, 'card-microprocessor', 'Microprocessor.html')">
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             CARD 2: SIGNALS & SYSTEMS (CYAN / ORANGE NEON)
+             =================================================================== -->
+        <article 
+          class="subject-card" 
+          id="card-signal-system" 
+          data-subject="signal-system"
+          data-categories="year3 signal"
+          data-keywords="signal and system signals systems eee 3205 fourier transform laplace continuous discrete convolution lti impulse response"
+          data-filename="Signal and System.html"
+          data-title="Signals & Systems"
+          data-code="EEE 3205"
+          style="
+            --theme-accent: var(--neon-cyan); 
+            --theme-glow: var(--neon-cyan-glow); 
+            --theme-border: rgba(6, 182, 212, 0.3);
+          "
+        >
+          <div class="card-specular-light"></div>
+
+          <div class="card-drop-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
+          </div>
+
+          <div class="card-content-top">
+            <div class="card-meta-row">
+              <div class="course-badges-group">
+                <span class="badge-eee">EEE</span>
+                <span class="badge-code">EEE 3205</span>
+              </div>
+              <div class="status-badge-ready" id="status-badge-signal-system">
+                <span class="status-dot-mini"></span>
+                <span class="status-text">HTML File Ready</span>
+              </div>
+            </div>
+
+            <!-- Custom Animated 3D Waveforms SVG Graphic -->
+            <div class="card-graphic-chamber">
+              <svg class="graphic-svg" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="neon-glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <filter id="neon-glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Oscilloscope Grid Lines -->
+                <g stroke="rgba(255,255,255,0.08)" stroke-width="0.8">
+                  <line x1="20" y1="30" x2="300" y2="30"/>
+                  <line x1="20" y1="60" x2="300" y2="60"/>
+                  <line x1="20" y1="90" x2="300" y2="90" stroke="rgba(6,182,212,0.3)" stroke-width="1.2"/>
+                  <line x1="20" y1="120" x2="300" y2="120"/>
+                  <line x1="20" y1="150" x2="300" y2="150"/>
+                  
+                  <line x1="55" y1="20" x2="55" y2="160"/>
+                  <line x1="105" y1="20" x2="105" y2="160"/>
+                  <line x1="160" y1="20" x2="160" y2="160" stroke="rgba(6,182,212,0.3)" stroke-width="1.2"/>
+                  <line x1="215" y1="20" x2="215" y2="160"/>
+                  <line x1="265" y1="20" x2="265" y2="160"/>
+                </g>
+
+                <!-- Continuous Cyan Sine Wave -->
+                <path 
+                  d="M 20 90 Q 55 25, 90 90 T 160 90 T 230 90 T 300 90" 
+                  fill="none" 
+                  stroke="#06b6d4" 
+                  stroke-width="3" 
+                  filter="url(#neon-glow-cyan)"
+                  stroke-linecap="round"
+                >
+                  <animate attributeName="stroke-dasharray" values="10, 5; 20, 10; 10, 5" dur="4s" repeatCount="indefinite"/>
+                </path>
+
+                <!-- Continuous Orange Cosine Wave (Phase Offset) -->
+                <path 
+                  d="M 20 40 Q 55 105, 90 140 T 160 40 T 230 140 T 300 40" 
+                  fill="none" 
+                  stroke="#f97316" 
+                  stroke-width="2.2" 
+                  filter="url(#neon-glow-orange)"
+                  stroke-linecap="round"
+                  opacity="0.85"
+                />
+
+                <!-- Coordinate Ticks & Formula -->
+                <text x="280" y="85" font-family="'JetBrains Mono', monospace" font-size="9" fill="#06b6d4">t</text>
+                <text x="165" y="32" font-family="'JetBrains Mono', monospace" font-size="9" fill="#06b6d4">x(t)</text>
+                
+                <!-- Badge Text: Continuous vs Discrete -->
+                <rect x="25" y="140" width="110" height="20" rx="4" fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.3)" stroke-width="0.8"/>
+                <text x="80" y="154" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#38bdf8">x(t) ↔ X(jω)</text>
+              </svg>
+            </div>
+
+            <div class="card-title-group">
+              <h2 class="card-subject-title">Signals & Systems</h2>
+              <p class="card-subject-subtitle">Classification of signals, LTI continuous and discrete convolution, Fourier transform, Laplace, and transfer function analysis.</p>
+            </div>
+
+            <div class="card-tags-list">
+              <span class="topic-tag">Continuous & Discrete</span>
+              <span class="topic-tag">Fourier Transform</span>
+              <span class="topic-tag">Laplace s-Domain</span>
+              <span class="topic-tag">LTI Convolution</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="file-meta-row">
+              <span class="file-name-text" title="Signal and System.html">Signal and System.html</span>
+              <span class="file-size-text" id="size-signal-system">~602 KB • HTML5</span>
+            </div>
+
+            <div class="card-btn-group">
+              <button class="btn-view-notes" onclick="openNoteModal('Signal%20and%20System.html', 'Signals & Systems', 'EEE 3205')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span>View Notes</span>
+              </button>
+
+              <a href="Signal%20and%20System.html" target="_blank" class="btn-card-action" title="Open in New Tab" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+
+              <label class="btn-card-action" title="Quick Upload / Replace File" style="cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <input type="file" class="hidden-file-input" accept=".html,.htm" onchange="handleFileUpload(event, 'card-signal-system', 'Signal and System.html')">
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             CARD 3: NUMERICAL METHODS & ANALYSIS (PURPLE / MAGENTA NEON)
+             =================================================================== -->
+        <article 
+          class="subject-card" 
+          id="card-numerical-methods" 
+          data-subject="numerical-methods"
+          data-categories="year3 systems"
+          data-keywords="numerical methods analysis newton raphson runge kutta gauss seidel interpolation shupto fec question bank matrices ode integration"
+          data-filename="Numerical_Analysis_Note_Shupto_EEE_FEC.html"
+          data-title="Numerical Analysis & Question Bank"
+          data-code="MATH / EEE"
+          style="
+            --theme-accent: var(--neon-purple); 
+            --theme-glow: var(--neon-purple-glow); 
+            --theme-border: rgba(168, 85, 247, 0.3);
+          "
+        >
+          <div class="card-specular-light"></div>
+
+          <div class="card-drop-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
+          </div>
+
+          <div class="card-content-top">
+            <div class="card-meta-row">
+              <div class="course-badges-group">
+                <span class="badge-eee">FEC CORE</span>
+                <span class="badge-code">MATH 3101</span>
+              </div>
+              <div class="status-badge-ready" id="status-badge-numerical-methods">
+                <span class="status-dot-mini"></span>
+                <span class="status-text">HTML File Ready</span>
+              </div>
+            </div>
+
+            <!-- Custom Animated 3D Mathematical Matrix & Integral SVG Graphic -->
+            <div class="card-graphic-chamber">
+              <svg class="graphic-svg" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="neon-glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Subtle Grid Coordinate Axes -->
+                <line x1="40" y1="140" x2="280" y2="140" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <line x1="60" y1="30" x2="60" y2="155" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+                <!-- Stylized 3D Matrix Brackets (Left) -->
+                <path d="M 50 45 L 35 45 L 35 125 L 50 125" fill="none" stroke="#c084fc" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M 125 45 L 140 45 L 140 125 L 125 125" fill="none" stroke="#c084fc" stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- Matrix Coefficients -->
+                <text x="60" y="70" font-family="'JetBrains Mono', monospace" font-size="11" fill="#ec4899">a₁₁</text>
+                <text x="100" y="70" font-family="'JetBrains Mono', monospace" font-size="11" fill="#c084fc">a₁₂</text>
+                <text x="60" y="105" font-family="'JetBrains Mono', monospace" font-size="11" fill="#c084fc">a₂₁</text>
+                <text x="100" y="105" font-family="'JetBrains Mono', monospace" font-size="11" fill="#ec4899">a₂₂</text>
+
+                <!-- Newton-Raphson Function Curve & Tangent Intersect -->
+                <path d="M 160 135 C 190 120, 210 80, 270 35" fill="none" stroke="#ec4899" stroke-width="2.5" filter="url(#neon-glow-purple)"/>
+                
+                <!-- Tangent Line Projection -->
+                <line x1="250" y1="50" x2="200" y2="140" stroke="#a855f7" stroke-width="1.8" stroke-dasharray="4, 3"/>
+                
+                <!-- Root Point Convergence Dot -->
+                <circle cx="200" cy="140" r="4" fill="#f43f5e">
+                  <animate attributeName="r" values="3;6;3" dur="1.5s" repeatCount="indefinite"/>
+                </circle>
+                <text x="195" y="156" font-family="'JetBrains Mono', monospace" font-size="9" fill="#f43f5e">xₙ₊₁</text>
+
+                <!-- Elegant Integral & Summation Symbols -->
+                <text x="155" y="75" font-family="'Space Grotesk', sans-serif" font-size="34" fill="#a855f7" opacity="0.8">∫</text>
+                <text x="250" y="125" font-family="'JetBrains Mono', monospace" font-size="10" fill="#a855f7">f(x)=0</text>
+              </svg>
+            </div>
+
+            <div class="card-title-group">
+              <h2 class="card-subject-title">Numerical Analysis & Question Bank</h2>
+              <p class="card-subject-subtitle">Roots of non-linear equations, Newton-Raphson, Gauss-Seidel matrix solvers, RK-4 ODE methods, and solved question sets.</p>
+            </div>
+
+            <div class="card-tags-list">
+              <span class="topic-tag">Newton-Raphson</span>
+              <span class="topic-tag">Runge-Kutta 4th</span>
+              <span class="topic-tag">Gauss Elimination</span>
+              <span class="topic-tag">FEC Solved Bank</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="file-meta-row">
+              <span class="file-name-text" title="Numerical_Analysis_Note_Shupto_EEE_FEC.html">Numerical_Analysis_Note...</span>
+              <span class="file-size-text" id="size-numerical-methods">~727 KB • HTML5</span>
+            </div>
+
+            <div class="card-btn-group">
+              <button class="btn-view-notes" onclick="openNoteModal('Numerical_Analysis_Note_Shupto_EEE_FEC.html', 'Numerical Analysis & Solved Question Bank', 'MATH / EEE FEC')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span>View Notes</span>
+              </button>
+
+              <a href="Numerical_Analysis_Note_Shupto_EEE_FEC.html" target="_blank" class="btn-card-action" title="Open in New Tab" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+
+              <label class="btn-card-action" title="Quick Upload / Replace File" style="cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <input type="file" class="hidden-file-input" accept=".html,.htm" onchange="handleFileUpload(event, 'card-numerical-methods', 'Numerical_Analysis_Note_Shupto_EEE_FEC.html')">
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             CARD 4: DIGITAL SIGNAL PROCESSING (DSP) (ELECTRIC BLUE NEON)
+             =================================================================== -->
+        <article 
+          class="subject-card" 
+          id="card-dsp" 
+          data-subject="dsp"
+          data-categories="year4 signal"
+          data-keywords="digital signal processing dsp eee 4101 dft fft z transform fir iir filter butterworth chebyshev stem plot audio spectrum"
+          data-filename="dsp_notes.html"
+          data-title="Digital Signal Processing (DSP)"
+          data-code="EEE 4101"
+          style="
+            --theme-accent: var(--neon-blue); 
+            --theme-glow: var(--neon-blue-glow); 
+            --theme-border: rgba(59, 130, 246, 0.35);
+          "
+        >
+          <div class="card-specular-light"></div>
+
+          <div class="card-drop-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
+          </div>
+
+          <div class="card-content-top">
+            <div class="card-meta-row">
+              <div class="course-badges-group">
+                <span class="badge-eee">EEE</span>
+                <span class="badge-code">EEE 4101</span>
+              </div>
+              <div class="status-badge-ready" id="status-badge-dsp">
+                <span class="status-dot-mini"></span>
+                <span class="status-text">HTML File Ready</span>
+              </div>
+            </div>
+
+            <!-- Custom Animated 3D Stem Plot & Spectrum Visualizer SVG Graphic -->
+            <div class="card-graphic-chamber">
+              <svg class="graphic-svg" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="spectrum-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#1d4ed8"/>
+                    <stop offset="60%" stop-color="#38bdf8"/>
+                    <stop offset="100%" stop-color="#00f0ff"/>
+                  </linearGradient>
+                  <filter id="neon-glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Baseline discrete stem axis -->
+                <line x1="20" y1="125" x2="155" y2="125" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+                <text x="145" y="138" font-family="'JetBrains Mono', monospace" font-size="8" fill="#60a5fa">n</text>
+
+                <!-- Discrete Stem Plot x[n] with lollipop heads -->
+                <g stroke="#38bdf8" stroke-width="2" stroke-linecap="round">
+                  <!-- Stem 1 -->
+                  <line x1="30" y1="125" x2="30" y2="105"/>
+                  <circle cx="30" cy="105" r="3.5" fill="#00f0ff" stroke="none"/>
+
+                  <!-- Stem 2 -->
+                  <line x1="45" y1="125" x2="45" y2="80"/>
+                  <circle cx="45" cy="80" r="3.5" fill="#00f0ff" stroke="none"/>
+
+                  <!-- Stem 3 -->
+                  <line x1="60" y1="125" x2="60" y2="50"/>
+                  <circle cx="60" cy="50" r="4" fill="#ffffff" stroke="none" filter="url(#neon-glow-blue)"/>
+
+                  <!-- Stem 4 -->
+                  <line x1="75" y1="125" x2="75" y2="70"/>
+                  <circle cx="75" cy="70" r="3.5" fill="#00f0ff" stroke="none"/>
+
+                  <!-- Stem 5 -->
+                  <line x1="90" y1="125" x2="90" y2="110"/>
+                  <circle cx="90" cy="110" r="3.5" fill="#00f0ff" stroke="none"/>
+
+                  <!-- Stem 6 (negative) -->
+                  <line x1="105" y1="125" x2="105" y2="145"/>
+                  <circle cx="105" cy="145" r="3" fill="#3b82f6" stroke="none"/>
+
+                  <!-- Stem 7 -->
+                  <line x1="120" y1="125" x2="120" y2="95"/>
+                  <circle cx="120" cy="95" r="3.5" fill="#00f0ff" stroke="none"/>
+                </g>
+
+                <!-- Divider Line -->
+                <line x1="165" y1="25" x2="165" y2="155" stroke="rgba(255,255,255,0.08)" stroke-dasharray="2, 4"/>
+
+                <!-- Dynamic Audio Frequency Spectrum Bars (Right) -->
+                <g fill="url(#spectrum-grad)">
+                  <rect x="180" y="70" width="8" height="65" rx="3">
+                    <animate attributeName="height" values="65;35;75;65" dur="1.8s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="70;100;60;70" dur="1.8s" repeatCount="indefinite"/>
+                  </rect>
+                  <rect x="194" y="45" width="8" height="90" rx="3">
+                    <animate attributeName="height" values="90;60;105;90" dur="1.4s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="45;75;30;45" dur="1.4s" repeatCount="indefinite"/>
+                  </rect>
+                  <rect x="208" y="30" width="8" height="105" rx="3">
+                    <animate attributeName="height" values="105;50;115;105" dur="1.6s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="30;85;20;30" dur="1.6s" repeatCount="indefinite"/>
+                  </rect>
+                  <rect x="222" y="55" width="8" height="80" rx="3">
+                    <animate attributeName="height" values="80;40;95;80" dur="1.3s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="55;95;40;55" dur="1.3s" repeatCount="indefinite"/>
+                  </rect>
+                  <rect x="236" y="80" width="8" height="55" rx="3">
+                    <animate attributeName="height" values="55;25;70;55" dur="1.9s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="80;110;65;80" dur="1.9s" repeatCount="indefinite"/>
+                  </rect>
+                  <rect x="250" y="95" width="8" height="40" rx="3">
+                    <animate attributeName="height" values="40;20;60;40" dur="1.5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="95;115;75;95" dur="1.5s" repeatCount="indefinite"/>
+                  </rect>
+                  <rect x="264" y="110" width="8" height="25" rx="3">
+                    <animate attributeName="height" values="25;15;45;25" dur="1.7s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="110;120;90;110" dur="1.7s" repeatCount="indefinite"/>
+                  </rect>
+                </g>
+
+                <!-- FFT / Z-Plane Badge -->
+                <text x="230" y="155" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#38bdf8">FFT SPECTRUM | |X(eʲʷ)|</text>
+              </svg>
+            </div>
+
+            <div class="card-title-group">
+              <h2 class="card-subject-title">Digital Signal Processing (DSP)</h2>
+              <p class="card-subject-subtitle">Discrete Fourier Transform (DFT), Radix-2 FFT algorithms, Z-plane pole-zero stability, FIR filter design, and IIR bilinear transforms.</p>
+            </div>
+
+            <div class="card-tags-list">
+              <span class="topic-tag">Radix-2 FFT</span>
+              <span class="topic-tag">Z-Transform ROC</span>
+              <span class="topic-tag">FIR Hamming Window</span>
+              <span class="topic-tag">IIR Butterworth</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="file-meta-row">
+              <span class="file-name-text" title="dsp_notes.html">dsp_notes.html</span>
+              <span class="file-size-text" id="size-dsp">~993 KB • HTML5</span>
+            </div>
+
+            <div class="card-btn-group">
+              <button class="btn-view-notes" onclick="openNoteModal('dsp_notes.html', 'Digital Signal Processing (DSP)', 'EEE 4101')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span>View Notes</span>
+              </button>
+
+              <a href="dsp_notes.html" target="_blank" class="btn-card-action" title="Open in New Tab" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+
+              <label class="btn-card-action" title="Quick Upload / Replace File" style="cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <input type="file" class="hidden-file-input" accept=".html,.htm" onchange="handleFileUpload(event, 'card-dsp', 'dsp_notes.html')">
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             CARD 5: CONTROL SYSTEMS ENGINEERING (TEAL / VIOLET NEON)
+             =================================================================== -->
+        <article 
+          class="subject-card" 
+          id="card-control-system" 
+          data-subject="control-system"
+          data-categories="year4 systems"
+          data-keywords="control system engineering eee 4103 transfer function feedback loop block diagram routh hurwitz bode plot nyquist state space pid"
+          data-filename="control_system_guide.html"
+          data-title="Control System Engineering"
+          data-code="EEE 4103"
+          style="
+            --theme-accent: var(--neon-teal); 
+            --theme-glow: var(--neon-teal-glow); 
+            --theme-border: rgba(20, 184, 166, 0.35);
+          "
+        >
+          <div class="card-specular-light"></div>
+
+          <div class="card-drop-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
+          </div>
+
+          <div class="card-content-top">
+            <div class="card-meta-row">
+              <div class="course-badges-group">
+                <span class="badge-eee">EEE</span>
+                <span class="badge-code">EEE 4103</span>
+              </div>
+              <div class="status-badge-ready" id="status-badge-control-system">
+                <span class="status-dot-mini"></span>
+                <span class="status-text">HTML File Ready</span>
+              </div>
+            </div>
+
+            <!-- Custom Animated 3D Feedback Loop & Gears SVG Graphic -->
+            <div class="card-graphic-chamber">
+              <svg class="graphic-svg" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="neon-glow-teal" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Input Arrow R(s) -->
+                <line x1="25" y1="70" x2="70" y2="70" stroke="#14b8a6" stroke-width="2" stroke-linecap="round"/>
+                <polygon points="70,66 76,70 70,74" fill="#14b8a6"/>
+                <text x="35" y="60" font-family="'JetBrains Mono', monospace" font-size="9" fill="#2dd4bf">R(s)</text>
+
+                <!-- Summing Junction Circle (+) & (-) -->
+                <circle cx="86" cy="70" r="10" fill="#0d1527" stroke="#14b8a6" stroke-width="2" filter="url(#neon-glow-teal)"/>
+                <line x1="81" y1="70" x2="91" y2="70" stroke="#14b8a6" stroke-width="1.8"/>
+                <line x1="86" y1="65" x2="86" y2="75" stroke="#14b8a6" stroke-width="1.8"/>
+                <text x="78" y="93" font-family="'JetBrains Mono', monospace" font-size="10" fill="#f43f5e">−</text>
+
+                <!-- Forward Path Arrow to Plant G(s) -->
+                <line x1="96" y1="70" x2="135" y2="70" stroke="#14b8a6" stroke-width="2"/>
+                <polygon points="135,66 141,70 135,74" fill="#14b8a6"/>
+
+                <!-- Forward Plant Box G(s) -->
+                <rect x="142" y="50" width="60" height="40" rx="8" fill="#0a1a2b" stroke="#2dd4bf" stroke-width="1.8"/>
+                <text x="172" y="75" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="12" fill="#ffffff">G(s)</text>
+
+                <!-- Output Arrow C(s) -->
+                <line x1="202" y1="70" x2="285" y2="70" stroke="#14b8a6" stroke-width="2"/>
+                <polygon points="280,66 286,70 280,74" fill="#14b8a6"/>
+                <text x="270" y="60" font-family="'JetBrains Mono', monospace" font-size="9" fill="#2dd4bf">C(s)</text>
+
+                <!-- Feedback Tap Node & Path -->
+                <circle cx="240" cy="70" r="3" fill="#14b8a6"/>
+                <path d="M 240 70 L 240 130 L 202 130" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+                <polygon points="202,126 196,130 202,134" fill="#8b5cf6"/>
+
+                <!-- Feedback Sensor Box H(s) -->
+                <rect x="135" y="112" width="60" height="36" rx="8" fill="#170f2b" stroke="#a78bfa" stroke-width="1.8"/>
+                <text x="165" y="135" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="12" fill="#e9d5ff">H(s)</text>
+
+                <!-- Feedback Return Path to Summing Junction -->
+                <path d="M 135 130 L 86 130 L 86 80" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+
+                <!-- Animated Traveling Feedback Pulse -->
+                <circle cx="86" cy="115" r="2.5" fill="#38bdf8">
+                  <animate attributeName="cy" values="130;80" dur="1.6s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.2;1;0.2" dur="1.6s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Interlocking Rotating Cyber Gears (Bottom Right) -->
+                <g transform="translate(275, 135)">
+                  <circle cx="0" cy="0" r="16" fill="none" stroke="#14b8a6" stroke-width="2" stroke-dasharray="4, 4">
+                    <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="0" cy="0" r="4" fill="#14b8a6"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="card-title-group">
+              <h2 class="card-subject-title">Control Systems Engineering</h2>
+              <p class="card-subject-subtitle">Closed-loop stability, Routh-Hurwitz criteria, Root Locus trajectories, Bode and Nyquist plots, and state-space matrix representations.</p>
+            </div>
+
+            <div class="card-tags-list">
+              <span class="topic-tag">Transfer Functions</span>
+              <span class="topic-tag">Root Locus</span>
+              <span class="topic-tag">Bode Stability</span>
+              <span class="topic-tag">State-Space Models</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="file-meta-row">
+              <span class="file-name-text" title="control_system_guide.html">control_system_guide...</span>
+              <span class="file-size-text" id="size-control-system">~817 KB • HTML5</span>
+            </div>
+
+            <div class="card-btn-group">
+              <button class="btn-view-notes" onclick="openNoteModal('control_system_guide.html', 'Control Systems Engineering', 'EEE 4103')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span>View Notes</span>
+              </button>
+
+              <a href="control_system_guide.html" target="_blank" class="btn-card-action" title="Open in New Tab" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+
+              <label class="btn-card-action" title="Quick Upload / Replace File" style="cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <input type="file" class="hidden-file-input" accept=".html,.htm" onchange="handleFileUpload(event, 'card-control-system', 'control_system_guide.html')">
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===================================================================
+             CARD 6: VLSI CIRCUITS AND DESIGN (EMERALD / CYAN NEON)
+             =================================================================== -->
+        <article 
+          class="subject-card" 
+          id="card-vlsi" 
+          data-subject="vlsi"
+          data-categories="year4 hardware"
+          data-keywords="vlsi circuits and design eee 4105 mos cmos inverter stick diagram layout lambda rules propagation delay bicmos fabrication"
+          data-filename="vlsi_study_guide.html"
+          data-title="VLSI Circuits & Design"
+          data-code="EEE 4105"
+          style="
+            --theme-accent: var(--neon-emerald); 
+            --theme-glow: var(--neon-emerald-glow); 
+            --theme-border: rgba(16, 185, 129, 0.35);
+          "
+        >
+          <div class="card-specular-light"></div>
+
+          <div class="card-drop-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span class="drop-overlay-text">Drop HTML to Update Notes</span>
+          </div>
+
+          <div class="card-content-top">
+            <div class="card-meta-row">
+              <div class="course-badges-group">
+                <span class="badge-eee">EEE</span>
+                <span class="badge-code">EEE 4105</span>
+              </div>
+              <div class="status-badge-ready" id="status-badge-vlsi">
+                <span class="status-dot-mini"></span>
+                <span class="status-text">HTML File Ready</span>
+              </div>
+            </div>
+
+            <!-- Custom Animated 3D Silicon Wafer & CMOS Layout SVG Graphic -->
+            <div class="card-graphic-chamber">
+              <svg class="graphic-svg" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="wafer-metal" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#3b82f6"/>
+                    <stop offset="100%" stop-color="#06b6d4"/>
+                  </linearGradient>
+                  <filter id="neon-glow-emerald" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Silicon Wafer Grid Background -->
+                <rect x="30" y="25" width="260" height="130" rx="10" fill="#081412" stroke="#10b981" stroke-width="1.2" opacity="0.6"/>
+
+                <!-- Top Metal-1 VDD Supply Rail (Blue) -->
+                <rect x="45" y="35" width="230" height="10" rx="2" fill="url(#wafer-metal)"/>
+                <text x="50" y="43" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#ffffff" font-weight="700">VDD (+5V)</text>
+
+                <!-- Bottom Metal-1 GND Rail (Blue) -->
+                <rect x="45" y="135" width="230" height="10" rx="2" fill="url(#wafer-metal)"/>
+                <text x="50" y="143" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#ffffff" font-weight="700">GND (VSS)</text>
+
+                <!-- P-Diffusion Region (PMOS Active) -->
+                <rect x="90" y="55" width="140" height="26" rx="4" fill="rgba(6, 182, 212, 0.25)" stroke="#06b6d4" stroke-width="1.2"/>
+                <text x="100" y="71" font-family="'JetBrains Mono', monospace" font-size="8" fill="#38bdf8">P+ DIFFUSION (PMOS)</text>
+
+                <!-- N-Diffusion Region (NMOS Active) -->
+                <rect x="90" y="98" width="140" height="26" rx="4" fill="rgba(16, 185, 129, 0.25)" stroke="#10b981" stroke-width="1.2"/>
+                <text x="100" y="114" font-family="'JetBrains Mono', monospace" font-size="8" fill="#34d399">N+ DIFFUSION (NMOS)</text>
+
+                <!-- Vertical Red/Pink Polysilicon Gate Stripe -->
+                <rect x="150" y="45" width="16" height="90" rx="3" fill="#f43f5e" filter="url(#neon-glow-emerald)"/>
+                <text x="158" y="92" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7" fill="#ffffff" transform="rotate(-90 158 92)">POLY GATE (IN)</text>
+
+                <!-- Contact Cut Vias (X Marks) -->
+                <g stroke="#ffffff" stroke-width="1.2">
+                  <!-- PMOS Contacts -->
+                  <rect x="65" y="60" width="14" height="14" fill="#1e293b"/>
+                  <line x1="65" y1="60" x2="79" y2="74"/>
+                  <line x1="79" y1="60" x2="65" y2="74"/>
+
+                  <!-- Output Drain Contacts -->
+                  <rect x="240" y="82" width="14" height="14" fill="#1e293b"/>
+                  <line x1="240" y1="82" x2="254" y2="96"/>
+                  <line x1="254" y1="82" x2="240" y2="96"/>
+                </g>
+
+                <!-- Output Metal Interconnect Line -->
+                <path d="M 230 68 L 247 68 L 247 82 M 230 111 L 247 111 L 247 96 M 254 89 L 280 89" fill="none" stroke="#38bdf8" stroke-width="2"/>
+                <text x="272" y="83" font-family="'JetBrains Mono', monospace" font-size="9" fill="#38bdf8">OUT</text>
+              </svg>
+            </div>
+
+            <div class="card-title-group">
+              <h2 class="card-subject-title">VLSI Circuits & Design</h2>
+              <p class="card-subject-subtitle">CMOS and BiCMOS inverter design, stick diagrams, lambda design rules, gate propagation delays, dynamic CMOS, and silicon fabrication.</p>
+            </div>
+
+            <div class="card-tags-list">
+              <span class="topic-tag">CMOS Stick Layout</span>
+              <span class="topic-tag">Lambda Rules</span>
+              <span class="topic-tag">BiCMOS Inverter</span>
+              <span class="topic-tag">Propagation Delay</span>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="file-meta-row">
+              <span class="file-name-text" title="vlsi_study_guide.html">vlsi_study_guide.html</span>
+              <span class="file-size-text" id="size-vlsi">~958 KB • HTML5</span>
+            </div>
+
+            <div class="card-btn-group">
+              <button class="btn-view-notes" onclick="openNoteModal('vlsi_study_guide.html', 'VLSI Circuits & Design', 'EEE 4105')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span>View Notes</span>
+              </button>
+
+              <a href="vlsi_study_guide.html" target="_blank" class="btn-card-action" title="Open in New Tab" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+
+              <label class="btn-card-action" title="Quick Upload / Replace File" style="cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <input type="file" class="hidden-file-input" accept=".html,.htm" onchange="handleFileUpload(event, 'card-vlsi', 'vlsi_study_guide.html')">
+              </label>
+            </div>
+          </div>
+        </article>
+
+        <!-- No Results Fallback Card -->
+        <div class="empty-search-state" id="empty-search-state">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5" style="margin-bottom: 12px;">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+          <h3 class="empty-search-title">No Matching EEE Subjects Found</h3>
+          <p class="empty-search-desc">Try searching for keywords like "3201", "4101", "Fourier", "8086", "CMOS", or "Newton".</p>
+          <button class="btn-view-notes" onclick="resetSearchAndFilters()" style="display: inline-flex; width: auto;">
+            Reset Search Filters
+          </button>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Hub Footer -->
+    <footer class="hub-footer">
+      <div class="footer-left">
+        <span>CRIMSON CAESAR • DESIGNED FOR FEC EEE</span>
+        <span>•</span>
+        <span>STANDALONE OFFLINE READY</span>
+      </div>
+      <div class="footer-links">
+        <a href="#card-microprocessor">Microprocessor</a>
+        <a href="#card-signal-system">Signals</a>
+        <a href="#card-numerical-methods">Numerical</a>
+        <a href="#card-dsp">DSP</a>
+        <a href="#card-control-system">Control</a>
+        <a href="#card-vlsi">VLSI</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================================================
+       FULL-SCREEN GLASSMORRHIC MODAL VIEWER WITH IFRAME
+       ========================================================================== -->
+  <div class="modal-overlay" id="note-modal-overlay">
+    <div class="modal-window">
+      <!-- Modal Header Toolbar -->
+      <div class="modal-header-bar">
+        <div class="modal-title-left">
+          <div class="modal-subject-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="modal-title-heading" id="modal-heading-title">Subject Notes Viewer</div>
+            <div class="modal-title-sub" id="modal-heading-code">EEE STUDY DASHBOARD</div>
+          </div>
+        </div>
+
+        <!-- Quick Subject Switcher Dropdown inside Viewer -->
+        <select id="modal-switcher-dropdown" class="modal-subject-select" onchange="switchModalSubject(this.value)" aria-label="Switch Subject">
+          <option value="Microprocessor.html">1. Microprocessor (CSE 3201)</option>
+          <option value="Signal and System.html">2. Signals & Systems (EEE 3205)</option>
+          <option value="Numerical_Analysis_Note_Shupto_EEE_FEC.html">3. Numerical Analysis (MATH)</option>
+          <option value="dsp_notes.html">4. Digital Signal Processing (EEE 4101)</option>
+          <option value="control_system_guide.html">5. Control Systems (EEE 4103)</option>
+          <option value="vlsi_study_guide.html">6. VLSI Circuits & Design (EEE 4105)</option>
+        </select>
+
+        <!-- Right Action Controls -->
+        <div class="modal-controls-right">
+          <button class="modal-tool-btn" id="modal-refresh-btn" onclick="reloadModalIframe()" title="Reload Note Document">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+            </svg>
+            <span>Reload</span>
+          </button>
+
+          <a href="#" target="_blank" id="modal-newtab-link" class="modal-tool-btn" title="Open in Dedicated Browser Tab" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            <span>New Tab</span>
+          </a>
+
+          <button class="modal-tool-btn" id="modal-fullscreen-btn" onclick="toggleModalFullscreen()" title="Toggle Fullscreen">
+            <svg id="fs-enter-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+            <svg id="fs-exit-icon" style="display:none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+            </svg>
+          </button>
+
+          <button class="modal-tool-btn btn-close" onclick="closeNoteModal()" title="Close Viewer (Esc)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+            <span>Close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Iframe Content Area -->
+      <div class="modal-frame-container">
+        <div class="iframe-loader" id="modal-iframe-loader">
+          <div class="spinner-ring"></div>
+          <div style="font-family: var(--font-mono); font-size: 0.85rem; color: #38bdf8; letter-spacing: 0.05em;">
+            INITIALIZING SECURE NOTE VIEWER...
+          </div>
+        </div>
+        <iframe id="modal-viewer-frame" class="modal-iframe" title="EEE Notes Viewer" loading="lazy" onload="onIframeLoaded()"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT: CANVAS 3D ENGINE, TILT INTERACTION, SEARCH & NOTE VIEWER
+       ========================================================================== -->
+  <script>
+    /* --------------------------------------------------------------------------
+       1. SYNTHESIZED CYBER AUDIO ENGINE (WEB AUDIO API)
+       -------------------------------------------------------------------------- */
+    let audioCtx = null;
+    let soundEnabled = false;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playCyberTone(freqStart, freqEnd, type, duration, volume = 0.04) {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.setValueAtTime(freqStart, ctx.currentTime);
+        if (freqEnd) {
+          osc.frequency.exponentialRampToValueAtTime(freqEnd, ctx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(volume, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        // Silent catch for audio policy
+      }
+    }
+
+    function playHoverSound() {
+      playCyberTone(700, 1100, 'triangle', 0.05, 0.02);
+    }
+
+    function playClickSound() {
+      playCyberTone(450, 950, 'sine', 0.08, 0.04);
+    }
+
+    function playModalOpenSound() {
+      playCyberTone(250, 750, 'sine', 0.22, 0.06);
+    }
+
+    function playUploadSuccessSound() {
+      playCyberTone(440, 880, 'triangle', 0.18, 0.05);
+    }
+
+    // Toggle Sound Button
+    const soundToggleBtn = document.getElementById('sound-toggle-btn');
+    const soundIconOn = document.getElementById('sound-icon-on');
+    const soundIconOff = document.getElementById('sound-icon-off');
+
+    soundToggleBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      if (soundEnabled) {
+        getAudioContext();
+        soundIconOn.style.display = 'block';
+        soundIconOff.style.display = 'none';
+        showToast('Cyber Audio Feedback Enabled');
+        playUploadSuccessSound();
+      } else {
+        soundIconOn.style.display = 'none';
+        soundIconOff.style.display = 'block';
+        showToast('Audio Feedback Muted');
+      }
+    });
+
+    /* --------------------------------------------------------------------------
+       2. 3D TUBULAR CIRCUITS, CYBER GRID & FLOATING LOGIC GATES (CANVAS ENGINE)
+       -------------------------------------------------------------------------- */
+    const canvas = document.getElementById('circuit-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = 0;
+    let height = 0;
+    let dpr = window.devicePixelRatio || 1;
+    let mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
+
+    // Resize canvas
+    let resizeDebounce = null;
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.scale(dpr, dpr);
+      clearTimeout(resizeDebounce);
+      resizeDebounce = setTimeout(initCircuitNetwork, 80);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', (e) => {
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+    });
+
+    // PCB Network Traces
+    let circuitPaths = [];
+    let electronPulses = [];
+    let floatingLogicGates = [];
+    let floatingParticles = [];
+
+    // Logic gate types for 3D floating animation
+    const GATE_TYPES = ['AND', 'OR', 'XOR', 'NAND', 'NOT', 'OPAMP'];
+
+    function initCircuitNetwork() {
+      circuitPaths = [];
+      electronPulses = [];
+      floatingLogicGates = [];
+      floatingParticles = [];
+
+      // Generate Orthogonal 3D Tubular PCB Traces
+      const numLines = Math.floor(width / 130) + 6;
+      for (let i = 0; i < numLines; i++) {
+        let x = Math.random() * width;
+        let y = Math.random() * (height * 0.7);
+        let pathPoints = [{ x, y }];
+        let segments = 3 + Math.floor(Math.random() * 4);
+
+        for (let s = 0; s < segments; s++) {
+          let dir = Math.floor(Math.random() * 4);
+          let dist = 60 + Math.random() * 140;
+          if (dir === 0) x += dist;
+          else if (dir === 1) x -= dist;
+          else if (dir === 2) y += dist;
+          else y -= dist;
+
+          // 45 degree bevel branch occasionally
+          if (Math.random() > 0.6) {
+            x += (Math.random() > 0.5 ? 40 : -40);
+            y += (Math.random() > 0.5 ? 40 : -40);
+          }
+          pathPoints.push({ x, y });
+        }
+
+        const colors = [
+          { stroke: 'rgba(239, 68, 68, 0.28)', core: '#ef4444', glow: 'rgba(239, 68, 68, 0.65)' },
+          { stroke: 'rgba(249, 115, 22, 0.26)', core: '#f97316', glow: 'rgba(249, 115, 22, 0.6)' },
+          { stroke: 'rgba(251, 146, 60, 0.24)', core: '#fb923c', glow: 'rgba(251, 146, 60, 0.55)' },
+          { stroke: 'rgba(225, 29, 72, 0.28)', core: '#f43f5e', glow: 'rgba(225, 29, 72, 0.65)' }
+        ];
+
+        const theme = colors[i % colors.length];
+        circuitPaths.push({ points: pathPoints, theme });
+
+        // Add 1-2 electron pulses per path
+        for (let p = 0; p < 2; p++) {
+          electronPulses.push({
+            pathIndex: i,
+            progress: Math.random(),
+            speed: 0.0015 + Math.random() * 0.0025,
+            size: 2.5 + Math.random() * 1.5,
+            theme
+          });
+        }
+      }
+
+      // Generate Floating 3D Vector Logic Gates (Crimson & Flame Fire)
+      const numGates = 8;
+      for (let g = 0; g < numGates; g++) {
+        floatingLogicGates.push({
+          x: Math.random() * width,
+          y: Math.random() * (height * 0.75),
+          z: 0.4 + Math.random() * 0.8,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.25,
+          angle: (Math.random() - 0.5) * 0.4,
+          vAngle: (Math.random() - 0.5) * 0.004,
+          type: GATE_TYPES[g % GATE_TYPES.length],
+          color: g % 2 === 0 ? 'rgba(239, 68, 68, 0.45)' : 'rgba(249, 115, 22, 0.45)'
+        });
+      }
+
+      // Floating fiery electron sparks
+      for (let pt = 0; pt < 40; pt++) {
+        floatingParticles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: -0.3 - Math.random() * 0.6,
+          radius: 1 + Math.random() * 1.8,
+          alpha: 0.2 + Math.random() * 0.6
+        });
+      }
+    }
+
+    // Helper: Draw Vector Logic Gates on Canvas
+    function drawVectorLogicGate(ctx, gate) {
+      ctx.save();
+      ctx.translate(gate.x, gate.y);
+      ctx.rotate(gate.angle);
+      ctx.scale(gate.z, gate.z);
+      ctx.strokeStyle = gate.color;
+      ctx.lineWidth = 1.8;
+      ctx.shadowColor = gate.color;
+      ctx.shadowBlur = 10;
+
+      const size = 30;
+
+      if (gate.type === 'AND') {
+        // AND Gate
+        ctx.beginPath();
+        ctx.moveTo(-size, -size * 0.7);
+        ctx.lineTo(0, -size * 0.7);
+        ctx.arc(0, 0, size * 0.7, -Math.PI / 2, Math.PI / 2, false);
+        ctx.lineTo(-size, size * 0.7);
+        ctx.closePath();
+        ctx.stroke();
+        // Leads
+        ctx.beginPath();
+        ctx.moveTo(-size - 12, -size * 0.35); ctx.lineTo(-size, -size * 0.35);
+        ctx.moveTo(-size - 12, size * 0.35); ctx.lineTo(-size, size * 0.35);
+        ctx.moveTo(size * 0.7, 0); ctx.lineTo(size * 0.7 + 14, 0);
+        ctx.stroke();
+      } else if (gate.type === 'OR') {
+        // OR Gate
+        ctx.beginPath();
+        ctx.moveTo(-size, -size * 0.7);
+        ctx.quadraticCurveTo(0, -size * 0.7, size * 0.7, 0);
+        ctx.quadraticCurveTo(0, size * 0.7, -size, size * 0.7);
+        ctx.quadraticCurveTo(-size * 0.5, 0, -size, -size * 0.7);
+        ctx.stroke();
+        // Leads
+        ctx.beginPath();
+        ctx.moveTo(-size - 10, -size * 0.35); ctx.lineTo(-size * 0.6, -size * 0.35);
+        ctx.moveTo(-size - 10, size * 0.35); ctx.lineTo(-size * 0.6, size * 0.35);
+        ctx.moveTo(size * 0.7, 0); ctx.lineTo(size * 0.7 + 14, 0);
+        ctx.stroke();
+      } else if (gate.type === 'NOT') {
+        // Inverter (Triangle with bubble and leads)
+        ctx.beginPath();
+        ctx.moveTo(-size * 0.7, -size * 0.6);
+        ctx.lineTo(size * 0.4, 0);
+        ctx.lineTo(-size * 0.7, size * 0.6);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(size * 0.4 + 4, 0, 3.5, 0, Math.PI * 2);
+        ctx.stroke();
+        // Leads
+        ctx.beginPath();
+        ctx.moveTo(-size - 8, 0); ctx.lineTo(-size * 0.7, 0);
+        ctx.moveTo(size * 0.4 + 7.5, 0); ctx.lineTo(size * 0.4 + 18, 0);
+        ctx.stroke();
+      } else if (gate.type === 'NAND') {
+        // NAND Gate (AND with bubble)
+        ctx.beginPath();
+        ctx.moveTo(-size, -size * 0.7);
+        ctx.lineTo(0, -size * 0.7);
+        ctx.arc(0, 0, size * 0.7, -Math.PI / 2, Math.PI / 2, false);
+        ctx.lineTo(-size, size * 0.7);
+        ctx.closePath();
+        ctx.stroke();
+        // Bubble
+        ctx.beginPath();
+        ctx.arc(size * 0.7 + 4, 0, 3.5, 0, Math.PI * 2);
+        ctx.stroke();
+        // Leads
+        ctx.beginPath();
+        ctx.moveTo(-size - 12, -size * 0.35); ctx.lineTo(-size, -size * 0.35);
+        ctx.moveTo(-size - 12, size * 0.35); ctx.lineTo(-size, size * 0.35);
+        ctx.moveTo(size * 0.7 + 7.5, 0); ctx.lineTo(size * 0.7 + 18, 0);
+        ctx.stroke();
+      } else if (gate.type === 'XOR') {
+        // XOR Gate (Double curved input arc)
+        ctx.beginPath();
+        ctx.moveTo(-size - 6, -size * 0.7);
+        ctx.quadraticCurveTo(-size * 0.5 - 6, 0, -size - 6, size * 0.7);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(-size, -size * 0.7);
+        ctx.quadraticCurveTo(0, -size * 0.7, size * 0.7, 0);
+        ctx.quadraticCurveTo(0, size * 0.7, -size, size * 0.7);
+        ctx.quadraticCurveTo(-size * 0.5, 0, -size, -size * 0.7);
+        ctx.stroke();
+        // Leads
+        ctx.beginPath();
+        ctx.moveTo(-size - 14, -size * 0.35); ctx.lineTo(-size - 6, -size * 0.35);
+        ctx.moveTo(-size - 14, size * 0.35); ctx.lineTo(-size - 6, size * 0.35);
+        ctx.moveTo(size * 0.7, 0); ctx.lineTo(size * 0.7 + 14, 0);
+        ctx.stroke();
+      } else if (gate.type === 'OPAMP') {
+        // Op-Amp Triangle with + and -
+        ctx.beginPath();
+        ctx.moveTo(-size, -size * 0.8);
+        ctx.lineTo(size * 0.8, 0);
+        ctx.lineTo(-size, size * 0.8);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.font = '10px monospace';
+        ctx.fillStyle = gate.color;
+        ctx.fillText('-', -size + 8, -size * 0.3);
+        ctx.fillText('+', -size + 8, size * 0.45);
+      } else {
+        // Generic Logic Buffer Box
+        ctx.strokeRect(-size * 0.7, -size * 0.5, size * 1.4, size);
+        ctx.font = '9px monospace';
+        ctx.fillStyle = gate.color;
+        ctx.fillText(gate.type, -size * 0.4, 3);
+      }
+
+      ctx.restore();
+    }
+
+    // Perspective 3D Cyber-Grid Vanishing Point
+    let gridOffset = 0;
+    function drawPerspectiveCyberGrid() {
+      const horizonY = height * 0.62;
+      const fov = 260;
+      gridOffset = (gridOffset + 0.6) % 40;
+
+      ctx.save();
+      ctx.strokeStyle = 'rgba(239, 68, 68, 0.22)';
+      ctx.lineWidth = 1;
+      ctx.shadowColor = '#ef4444';
+      ctx.shadowBlur = 5;
+
+      // Perspective longitudinal lines converging to horizon center
+      const centerX = width / 2;
+      const numRays = 26;
+      for (let r = -numRays / 2; r <= numRays / 2; r++) {
+        const bottomX = centerX + r * (width / (numRays * 0.45));
+        ctx.beginPath();
+        ctx.moveTo(centerX + r * 15, horizonY);
+        ctx.lineTo(bottomX, height);
+        ctx.stroke();
+      }
+
+      // Moving transversal lines towards viewer with crimson fire gradient
+      for (let z = 1; z < 22; z++) {
+        let dist = z * 24 + gridOffset;
+        let y = horizonY + (dist * dist) / fov;
+        if (y > height) continue;
+        let alpha = Math.max(0, Math.min(1, (y - horizonY) / (height - horizonY) * 0.45));
+        ctx.strokeStyle = `rgba(249, 115, 22, ${alpha})`;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Horizon Crimson Flame Fog
+      const horizonGrad = ctx.createLinearGradient(0, horizonY - 18, 0, horizonY + 24);
+      horizonGrad.addColorStop(0, 'transparent');
+      horizonGrad.addColorStop(0.5, 'rgba(239, 68, 68, 0.25)');
+      horizonGrad.addColorStop(0.8, 'rgba(249, 115, 22, 0.15)');
+      horizonGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = horizonGrad;
+      ctx.fillRect(0, horizonY - 20, width, 44);
+
+      ctx.restore();
+    }
+
+    // Main Canvas Render Loop
+    function animateCanvas() {
+      // Smooth mouse interpolation
+      mouse.x += (mouse.targetX - mouse.x) * 0.1;
+      mouse.y += (mouse.targetY - mouse.y) * 0.1;
+
+      ctx.clearRect(0, 0, width, height);
+
+      // 1. Draw 3D Perspective Cyber-Grid
+      drawPerspectiveCyberGrid();
+
+      // 2. Draw 3D Tubular PCB Traces
+      for (let i = 0; i < circuitPaths.length; i++) {
+        const path = circuitPaths[i];
+        const pts = path.points;
+        if (pts.length < 2) continue;
+
+        // Outer glow tube
+        ctx.strokeStyle = path.theme.stroke;
+        ctx.lineWidth = 3.5;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (let j = 1; j < pts.length; j++) {
+          ctx.lineTo(pts[j].x, pts[j].y);
+        }
+        ctx.stroke();
+
+        // Inner bright copper/optical core
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        // Corner Solder Pads / Vias
+        for (let j = 0; j < pts.length; j++) {
+          ctx.fillStyle = path.theme.core;
+          ctx.beginPath();
+          ctx.arc(pts[j].x, pts[j].y, 2.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // 3. Draw Traveling Electrical Pulses / Electrons
+      for (let p = 0; p < electronPulses.length; p++) {
+        const pulse = electronPulses[p];
+        const path = circuitPaths[pulse.pathIndex];
+        if (!path || path.points.length < 2) continue;
+
+        pulse.progress += pulse.speed;
+        if (pulse.progress > 1) pulse.progress = 0;
+
+        // Calculate position along multi-segment line
+        const totalSegments = path.points.length - 1;
+        const currentSegmentFloat = pulse.progress * totalSegments;
+        const segIdx = Math.floor(currentSegmentFloat);
+        const segT = currentSegmentFloat - segIdx;
+
+        const p1 = path.points[segIdx];
+        const p2 = path.points[Math.min(segIdx + 1, path.points.length - 1)];
+
+        const curX = p1.x + (p2.x - p1.x) * segT;
+        const curY = p1.y + (p2.y - p1.y) * segT;
+
+        ctx.save();
+        ctx.fillStyle = pulse.theme.core;
+        ctx.shadowColor = pulse.theme.core;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(curX, curY, pulse.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // 4. Draw Floating Vector Logic Gates
+      for (let g = 0; g < floatingLogicGates.length; g++) {
+        const gate = floatingLogicGates[g];
+        gate.x += gate.vx;
+        gate.y += gate.vy;
+        gate.angle += gate.vAngle;
+
+        // Wrap around bounds smoothly
+        if (gate.x < -60) gate.x = width + 60;
+        if (gate.x > width + 60) gate.x = -60;
+        if (gate.y < -60) gate.y = height * 0.75;
+        if (gate.y > height * 0.75) gate.y = -60;
+
+        drawVectorLogicGate(ctx, gate);
+      }
+
+      // 5. Draw Ambient Floating Fiery Embers/Sparks
+      ctx.fillStyle = '#f97316';
+      for (let pt = 0; pt < floatingParticles.length; pt++) {
+        const p = floatingParticles[pt];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.y < 0) {
+          p.y = height;
+          p.x = Math.random() * width;
+        }
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1.0;
+
+      requestAnimationFrame(animateCanvas);
+    }
+
+    // Initialize Canvas
+    resizeCanvas();
+    animateCanvas();
+
+    /* --------------------------------------------------------------------------
+       3. 3D CARD TILT & SPECULAR LIGHT TRACKING MICRO-INTERACTION
+       -------------------------------------------------------------------------- */
+    const subjectCards = document.querySelectorAll('.subject-card');
+
+    subjectCards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Calculate rotation tilt (-8deg to +8deg)
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.018, 1.018, 1.018)`;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+
+      card.addEventListener('mouseenter', () => {
+        playHoverSound();
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    });
+
+    /* --------------------------------------------------------------------------
+       4. REAL-TIME SEARCH & FILTER SYSTEM
+       -------------------------------------------------------------------------- */
+    const searchInput = document.getElementById('subject-search-input');
+    const searchClearBtn = document.getElementById('search-clear-btn');
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const visibleCardCount = document.getElementById('visible-card-count');
+    const emptyState = document.getElementById('empty-search-state');
+
+    let currentFilter = 'all';
+
+    function filterCards() {
+      const query = searchInput.value.trim().toLowerCase();
+      const cleanQuery = query.replace(/[-_]/g, ' ');
+      let matchCount = 0;
+
+      subjectCards.forEach((card) => {
+        const keywords = card.getAttribute('data-keywords').toLowerCase();
+        const title = card.getAttribute('data-title').toLowerCase();
+        const code = card.getAttribute('data-code').toLowerCase();
+        const categories = card.getAttribute('data-categories').toLowerCase();
+
+        const matchesQuery = !query || 
+          keywords.includes(query) || keywords.includes(cleanQuery) ||
+          title.includes(query) || title.includes(cleanQuery) ||
+          code.includes(query);
+        const matchesCategory = currentFilter === 'all' || categories.includes(currentFilter);
+
+        if (matchesQuery && matchesCategory) {
+          card.style.display = 'flex';
+          matchCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      visibleCardCount.textContent = matchCount;
+
+      if (matchCount === 0) {
+        emptyState.classList.add('show');
+      } else {
+        emptyState.classList.remove('show');
+      }
+
+      // Show/hide clear button
+      if (query.length > 0) {
+        searchClearBtn.style.display = 'flex';
+      } else {
+        searchClearBtn.style.display = 'none';
+      }
+    }
+
+    searchInput.addEventListener('input', () => {
+      filterCards();
+    });
+
+    searchClearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterCards();
+      searchInput.focus();
+    });
+
+    // Keyboard shortcut '/' to focus search bar, 'Escape' to exit fullscreen / close modal / clear search
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput && !isModalOpen) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+      if (e.key === 'Escape') {
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
+          return;
+        }
+        if (isModalOpen) {
+          closeNoteModal();
+        } else if (searchInput.value.length > 0) {
+          searchInput.value = '';
+          filterCards();
+        }
+      }
+    });
+
+    // Category Filter Chips Click Handler
+    filterChips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        playClickSound();
+        filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentFilter = chip.getAttribute('data-filter');
+        filterCards();
+      });
+    });
+
+    function resetSearchAndFilters() {
+      searchInput.value = '';
+      currentFilter = 'all';
+      filterChips.forEach(c => {
+        if (c.getAttribute('data-filter') === 'all') c.classList.add('active');
+        else c.classList.remove('active');
+      });
+      filterCards();
+    }
+
+    /* --------------------------------------------------------------------------
+       5. FULL-SCREEN GLASSMORRHIC MODAL NOTE VIEWER
+       -------------------------------------------------------------------------- */
+    const modalOverlay = document.getElementById('note-modal-overlay');
+    const modalFrame = document.getElementById('modal-viewer-frame');
+    const modalHeadingTitle = document.getElementById('modal-heading-title');
+    const modalHeadingCode = document.getElementById('modal-heading-code');
+    const modalSwitcher = document.getElementById('modal-switcher-dropdown');
+    const modalNewTabLink = document.getElementById('modal-newtab-link');
+    const iframeLoader = document.getElementById('modal-iframe-loader');
+
+    let isModalOpen = false;
+    let customFileUrls = {}; // Cache custom user-uploaded file URLs
+
+    function getResolvedUrl(fileUrl) {
+      const decoded = decodeURIComponent(fileUrl);
+      const encoded = encodeURI(decoded);
+      return customFileUrls[fileUrl] || customFileUrls[decoded] || customFileUrls[encoded] || encoded;
+    }
+
+    function openNoteModal(fileUrl, title, code) {
+      playModalOpenSound();
+      isModalOpen = true;
+
+      // Check if custom uploaded file is active for this subject
+      const resolvedUrl = getResolvedUrl(fileUrl);
+
+      modalHeadingTitle.textContent = title || 'CRIMSON CAESAR • Subject Notes';
+      modalHeadingCode.textContent = code ? `${code} • EEE COMPLETE STUDY GUIDE` : 'CRIMSON CAESAR KNOWLEDGE MATRIX';
+      modalNewTabLink.href = resolvedUrl;
+
+      // Sync dropdown
+      for (let i = 0; i < modalSwitcher.options.length; i++) {
+        if (modalSwitcher.options[i].value === fileUrl || modalSwitcher.options[i].value === decodeURIComponent(fileUrl)) {
+          modalSwitcher.selectedIndex = i;
+          break;
+        }
+      }
+
+      // Show loader
+      iframeLoader.style.opacity = '1';
+      iframeLoader.style.pointerEvents = 'auto';
+
+      modalFrame.src = resolvedUrl;
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNoteModal() {
+      playClickSound();
+      isModalOpen = false;
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        modalFrame.src = 'about:blank';
+      }, 350);
+    }
+
+    // Close when clicking modal backdrop
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        closeNoteModal();
+      }
+    });
+
+    function onIframeLoaded() {
+      iframeLoader.style.opacity = '0';
+      iframeLoader.style.pointerEvents = 'none';
+    }
+
+    function reloadModalIframe() {
+      playClickSound();
+      iframeLoader.style.opacity = '1';
+      iframeLoader.style.pointerEvents = 'auto';
+      // Cross-origin safe iframe reload
+      const currentSrc = modalFrame.src;
+      modalFrame.src = 'about:blank';
+      setTimeout(() => {
+        modalFrame.src = currentSrc;
+      }, 50);
+    }
+
+    function switchModalSubject(newFileUrl) {
+      playClickSound();
+      const decodedUrl = decodeURIComponent(newFileUrl);
+      const subjectMap = {
+        'Microprocessor.html': { title: 'Microprocessor & Microcontroller', code: 'CSE 3201' },
+        'Signal and System.html': { title: 'Signals & Systems', code: 'EEE 3205' },
+        'Numerical_Analysis_Note_Shupto_EEE_FEC.html': { title: 'Numerical Analysis & Question Bank', code: 'MATH / EEE' },
+        'dsp_notes.html': { title: 'Digital Signal Processing (DSP)', code: 'EEE 4101' },
+        'control_system_guide.html': { title: 'Control Systems Engineering', code: 'EEE 4103' },
+        'vlsi_study_guide.html': { title: 'VLSI Circuits & Design', code: 'EEE 4105' }
+      };
+
+      const meta = subjectMap[newFileUrl] || subjectMap[decodedUrl] || { title: 'EEE Subject Guide', code: 'EEE FEC' };
+      openNoteModal(newFileUrl, meta.title, meta.code);
+    }
+
+    // Toggle Modal Fullscreen
+    const fsEnterIcon = document.getElementById('fs-enter-icon');
+    const fsExitIcon = document.getElementById('fs-exit-icon');
+
+    function toggleModalFullscreen() {
+      playClickSound();
+      if (!document.fullscreenElement) {
+        modalOverlay.requestFullscreen().catch(err => {
+          showToast('Fullscreen mode not permitted: ' + err.message);
+        });
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        fsEnterIcon.style.display = 'block';
+        fsExitIcon.style.display = 'none';
+      } else {
+        fsEnterIcon.style.display = 'none';
+        fsExitIcon.style.display = 'block';
+      }
+    });
+
+    /* --------------------------------------------------------------------------
+       6. DYNAMIC FILE DRAG & DROP & FILEREADER API REPLACEMENT
+       -------------------------------------------------------------------------- */
+    function setupDragAndDrop() {
+      subjectCards.forEach((card) => {
+        const cardId = card.id;
+        const defaultFilename = card.getAttribute('data-filename');
+        let dragCounter = 0;
+
+        card.addEventListener('dragenter', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dragCounter++;
+          card.classList.add('drag-over');
+        });
+
+        card.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          card.classList.add('drag-over');
+        });
+
+        card.addEventListener('dragleave', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dragCounter--;
+          if (dragCounter <= 0) {
+            dragCounter = 0;
+            card.classList.remove('drag-over');
+          }
+        });
+
+        card.addEventListener('drop', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dragCounter = 0;
+          card.classList.remove('drag-over');
+
+          const files = e.dataTransfer.files;
+          if (files && files.length > 0) {
+            processUploadedFile(files[0], cardId, defaultFilename);
+          }
+        });
+      });
+    }
+
+    function handleFileUpload(event, cardId, defaultFilename) {
+      const files = event.target.files;
+      if (files && files.length > 0) {
+        processUploadedFile(files[0], cardId, defaultFilename);
+      }
+      event.target.value = ''; // Reset input to permit re-selection of the same file
+    }
+
+    function processUploadedFile(file, cardId, defaultFilename) {
+      if (!file.name.endsWith('.html') && !file.name.endsWith('.htm')) {
+        showToast('Please upload an HTML note file (.html or .htm)');
+        return;
+      }
+
+      // Read file content using the FileReader API
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const fileContent = e.target.result;
+        const blob = new Blob([fileContent], { type: 'text/html' });
+        const objectUrl = URL.createObjectURL(blob);
+        const decoded = decodeURIComponent(defaultFilename);
+        const encoded = encodeURI(decoded);
+
+        customFileUrls[defaultFilename] = objectUrl;
+        customFileUrls[decoded] = objectUrl;
+        customFileUrls[encoded] = objectUrl;
+
+        playUploadSuccessSound();
+
+        // Update Card Visual Badges
+        const card = document.getElementById(cardId);
+        const subjectKey = card.getAttribute('data-subject');
+        const badge = document.getElementById(`status-badge-${subjectKey}`);
+        const sizeElem = document.getElementById(`size-${subjectKey}`);
+        const newTabBtn = card.querySelector('a.btn-card-action[target="_blank"]');
+
+        if (badge) {
+          badge.className = 'status-badge-custom';
+          badge.innerHTML = `<span class="status-dot-mini"></span><span>Custom Loaded</span> <button onclick="resetCustomFile(event, '${cardId}', '${defaultFilename}')" style="background:none; border:none; color:#f472b6; cursor:pointer; font-size:0.75rem; text-decoration:underline; margin-left:4px;" title="Revert to Default">Reset</button>`;
+        }
+
+        if (newTabBtn) {
+          newTabBtn.href = objectUrl;
+        }
+
+        const formattedSize = (file.size / 1024).toFixed(1) + ' KB (Custom)';
+        if (sizeElem) {
+          sizeElem.textContent = formattedSize;
+        }
+
+        showToast(`Loaded "${file.name}" via FileReader into ${card.getAttribute('data-title')}`);
+
+        // Automatically offer to view the newly loaded file
+        setTimeout(() => {
+          openNoteModal(defaultFilename, card.getAttribute('data-title'), card.getAttribute('data-code'));
+        }, 400);
+      };
+
+      reader.onerror = function() {
+        showToast('Error reading uploaded HTML file.');
+      };
+
+      reader.readAsText(file);
+    }
+
+    function resetCustomFile(event, cardId, defaultFilename) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+      playClickSound();
+
+      const decoded = decodeURIComponent(defaultFilename);
+      const encoded = encodeURI(decoded);
+      delete customFileUrls[defaultFilename];
+      delete customFileUrls[decoded];
+      delete customFileUrls[encoded];
+
+      const card = document.getElementById(cardId);
+      const subjectKey = card.getAttribute('data-subject');
+      const badge = document.getElementById(`status-badge-${subjectKey}`);
+      const sizeElem = document.getElementById(`size-${subjectKey}`);
+      const newTabBtn = card.querySelector('a.btn-card-action[target="_blank"]');
+
+      if (badge) {
+        badge.className = 'status-badge-ready';
+        badge.innerHTML = `<span class="status-dot-mini"></span><span class="status-text">HTML File Ready</span>`;
+      }
+
+      const defaultSizes = {
+        'microprocessor': '~971 KB • HTML5',
+        'signal-system': '~602 KB • HTML5',
+        'numerical-methods': '~727 KB • HTML5',
+        'dsp': '~993 KB • HTML5',
+        'control-system': '~817 KB • HTML5',
+        'vlsi': '~958 KB • HTML5'
+      };
+
+      if (sizeElem && defaultSizes[subjectKey]) {
+        sizeElem.textContent = defaultSizes[subjectKey];
+      }
+
+      if (newTabBtn) {
+        newTabBtn.href = encoded;
+      }
+
+      showToast(`Reset ${card.getAttribute('data-title')} to default file.`);
+    }
+
+    setupDragAndDrop();
+
+    /* --------------------------------------------------------------------------
+       7. TOAST NOTIFICATION COMPONENT
+       -------------------------------------------------------------------------- */
+    const toastContainer = document.getElementById('toast-container');
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast-pill';
+      toast.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+        <span>${message}</span>
+      `;
+
+      toastContainer.appendChild(toast);
+      setTimeout(() => toast.classList.add('show'), 20);
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+      }, 3500);
+    }
+
+    // Info shortcut button
+    document.getElementById('info-btn').addEventListener('click', () => {
+      playClickSound();
+      showToast('Tip: Press "/" to search anytime • Press "Esc" to close the reader • Drag & drop .html files to preview');
+    });
+  </script>
+
+<!-- Copy deterrents: casual copying only. Determined users can still access page source. -->
+<style id="copy-deterrent">
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+input,textarea,[contenteditable="true"]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+</style>
+<script id="copy-deterrent">
+(function(){
+function isEditable(t){return t && t.closest && t.closest('input,textarea,[contenteditable="true"]');}
+document.addEventListener('contextmenu',function(e){if(!isEditable(e.target)) e.preventDefault();},true);
+document.addEventListener('copy',function(e){if(!isEditable(e.target)) e.preventDefault();},true);
+document.addEventListener('cut',function(e){if(!isEditable(e.target)) e.preventDefault();},true);
+document.addEventListener('dragstart',function(e){if(!isEditable(e.target)) e.preventDefault();},true);
+document.addEventListener('keydown',function(e){
+  var editable=isEditable(e.target);
+  if(e.key==='F12'){e.preventDefault();return;}
+  if((e.ctrlKey||e.metaKey) && !editable){
+    var k=e.key.toLowerCase();
+    if(['c','x','u','s','p','a'].indexOf(k)>=0) e.preventDefault();
+  }
+  if((e.ctrlKey||e.metaKey) && ['u','s','p'].indexOf(e.key.toLowerCase())>=0) e.preventDefault();
+  if(e.ctrlKey && e.shiftKey && ['i','j','c'].indexOf(e.key.toLowerCase())>=0) e.preventDefault();
+},true);
+})();
+</script>
+</body>
+</html>
